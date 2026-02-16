@@ -1,0 +1,35 @@
+{
+  "name": "@seksbot/seks-tools",
+  "version": "1.0.0",
+  "description": "CLI tools for SEKS broker: seks-http, seks-git, listseks",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "seks-http": "dist/src/cli/seks-http.js",
+    "seks-git": "dist/src/cli/seks-git.js",
+    "listseks": "dist/src/cli/listseks.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/tests/*.test.js",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "dependencies": {
+    "@seksbot/broker-client": "file:../seks-broker-client"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "SEKS Bot Team",
+  "license": "MIT"
+}
