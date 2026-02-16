@@ -24,11 +24,7 @@ Examples:
 
 async function resolveSecret(secret: string): Promise<string> {
   const client = getClient();
-  const slash = secret.indexOf('/');
-  if (slash > 0) {
-    return client.getSecret(secret.slice(0, slash), secret.slice(slash + 1));
-  }
-  return client.getSecret(secret, 'token');
+  return client.getSecret(secret);
 }
 
 function injectTokenIntoUrl(url: string, token: string): string {

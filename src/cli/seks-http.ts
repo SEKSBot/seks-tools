@@ -94,13 +94,8 @@ function parseArgs(argv: string[]): Options {
 
 async function resolveSecret(secret: string): Promise<string> {
   const client = getClient();
-  // secret format: provider/field
-  const slash = secret.indexOf('/');
-  if (slash > 0) {
-    return client.getSecret(secret.slice(0, slash), secret.slice(slash + 1));
-  }
-  // Fallback: treat as provider name, field = "token"
-  return client.getSecret(secret, 'token');
+  // Secret is a name like HETZNER_API_TOKEN or GITHUB_PERSONAL_ACCESS_TOKEN
+  return client.getSecret(secret);
 }
 
 async function main() {

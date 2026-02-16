@@ -50,6 +50,30 @@ async function main() {
   const opts = parseArgs(process.argv.slice(2));
   const client = getClient();
 
+  // Default mode: list secrets directly (most useful right now)
+  if (!opts.capabilities) {
+    const secrets = await client.listSecrets();
+    const filtered = opts.provider
+      ? secrets.filter(s => s.provider === opts.provider)
+      : secrets;
+
+    if (opts.json) {
+      console.log(JSON.stringify(filtered, null, 2));
+      return;
+    }
+
+    if (filtered.length === 0) {
+      console.log(opts.provider ? `No secrets for provider: ${opts.provider}` : 'No secrets available.');
+      return;
+    }
+
+    console.log('Available secrets:');
+    for (const s of filtered) {
+      console.log(`  ${s.name}  (${s.provider})`);
+    }
+    return;
+  }
+
   const caps = await client.listCapabilities();
 
   if (opts.json) {
