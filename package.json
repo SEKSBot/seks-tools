@@ -8,7 +8,8 @@
   "bin": {
     "seks-http": "dist/src/cli/seks-http.js",
     "seks-git": "dist/src/cli/seks-git.js",
-    "listseks": "dist/src/cli/listseks.js"
+    "listseks": "dist/src/cli/listseks.js",
+    "do-seks": "dist/src/cli/do-seks.js"
   },
   "scripts": {
     "build": "tsc",
